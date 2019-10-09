@@ -1,3 +1,15 @@
+## Protobuf lite implementation of the libsignal-protocol-java which is using protobuf-java
+
+### Why the change was needed?
+
+1. The libsignal-protocol-java library cannot be used together with any library using protobuf lite, example: https://developer.android.com/jetpack/androidx/releases/security
+
+2. libsignal-protocol-java is not good for usage in Android since protobuf-java is heavy on its own. The lite version was created keeping mobile devices in mind.
+
+
+
+
+## Original code is from Signal : https://github.com/signalapp/libsignal-protocol-java 
 # Overview
 
 A ratcheting forward secrecy protocol that works in synchronous and asynchronous messaging environments.
