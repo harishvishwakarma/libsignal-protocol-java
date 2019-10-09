@@ -20,21 +20,15 @@ android {
     compileSdkVersion 21
     buildToolsVersion "21.1.2"
 
-    sourceSets {
-        androidTest {
-            java.srcDirs = ['src/androidTest/java', project(':tests').file('src/test/java')]
-        }
-    }
-
-    libraryVariants.all { variant ->
+    /*libraryVariants.all { variant ->
         variant.outputs.each { output ->
-            def outputFile = output.outputFile
+            def outputFile = output.outputFileName
             if (outputFile != null && outputFile.name.endsWith('.aar')) {
                 def fileName = "${archivesBaseName}-${version}.aar"
                 output.outputFile = new File(outputFile.parent, fileName)
             }
         }
-    }
+    }*/
 }
 
 repositories {
@@ -58,10 +52,6 @@ uploadArchives {
     configuration = configurations.archives
     repositories.mavenDeployer {
         beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-
-        repository(url: sonatypeRepo) {
-            authentication(userName: whisperSonatypeUsername, password: whisperSonatypePassword)
-        }
 
         pom.project {
             name 'signal-protocol-android'
