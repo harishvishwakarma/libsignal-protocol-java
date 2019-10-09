@@ -22,7 +22,7 @@ sourceSets {
 
 dependencies {
     compile "org.whispersystems:curve25519-java:${curve25519_version}"
-    compile 'com.google.protobuf:protobuf-java:2.5.0'
+    compile group: 'com.google.protobuf', name: 'protobuf-javalite', version: '3.10.0'
 
     testCompile ('junit:junit:3.8.2')
 }
@@ -46,10 +46,6 @@ uploadArchives {
     configuration = configurations.archives
     repositories.mavenDeployer {
         beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-
-        repository(url: sonatypeRepo) {
-            authentication(userName: whisperSonatypeUsername, password: whisperSonatypePassword)
-        }
 
         pom.project {
             name 'signal-protocol-java'
